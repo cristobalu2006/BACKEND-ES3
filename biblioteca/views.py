@@ -1,12 +1,10 @@
-from django.shortcuts import render
-
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-from biblioteca.models import Autor, Libro
-from biblioteca.serializers import AutorSerializer, LibroSerializer
+from biblioteca.models import Libro
+from biblioteca.serializers import LibroSerializer
 
 
 
@@ -20,7 +18,6 @@ def crear_libro(request):
         return Response(libro_deserializado.data, status=status.HTTP_201_CREATED)
     else:
         return Response(libro_deserializado.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 
@@ -46,8 +43,7 @@ def modificar_libro(request, id):
 
         if serializado.is_valid():
             serializado.save()
-
-            return Response(status=status.HTTP_200_OK)
+            return Response(serializado.data, status=status.HTTP_202_ACCEPTED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     except:
