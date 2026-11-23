@@ -1,0 +1,5 @@
+Python manage.py createsuperuser
+
+usuario: cristobal
+correo: cristobal10@gmail.com
+passw: cris1010
